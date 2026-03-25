@@ -3,7 +3,7 @@
 - 模型選擇建議: **Claude Sonnet 4.5**
 
 ### ✨ 透過 Custom Agent 套用於不同操作情境
-#### Lab 1 **提示詞優化** : 利用 Refine Prompt agent 進行提示詞優化
+#### **提示詞優化** : 利用 Refine Prompt agent 進行提示詞優化
 - **示範重點：** 使用專屬 agent 來改進提示，並提供清晰度評分
 - **目的：** 幫助使用者釐清提示是取得好結果的關鍵，而多數開發者不知道如何改善提示此自訂聊天模式可協助提升提示品質
 - **操作方式：**
@@ -18,22 +18,20 @@
        ```
     6. 你應可看到更佳的提示與較高的清晰度評分
 
-#### Lab 2 **程式碼修復** : 修復程式碼功能面向錯誤
+#### **程式碼修復** : 修復程式碼功能面向錯誤
 - **示範重點：** 利用 Copilot 的 custom agent 協助修復程式碼
 - **目的：** 利用 Copilot 的 Debug Mode Instructions 模式協助修復程式碼問題
 - **操作方式：**  
-  1. 切換至 `login-page` 分支
-  2. 開啟 Copilot Chat，切換至 `Debug Mode Instructions` 模式
-  3. 輸入 `目前使用者創建帳號可選擇未來日期，進行修復`，查看 Copilot 生成的修復建議及改善
+  1. 開啟 Copilot Chat，切換至 `Debug Mode Instructions` 模式
+  2. 輸入 `目前使用者創建帳號可選擇未來日期，進行修復`，查看 Copilot 生成的修復建議及改善
 
-#### Lab 3 **安全性審查** : 利用 custom agent 進行安全性審查並產生修復計畫
+#### **安全性審查** : 利用 custom agent 進行安全性審查並產生修復計畫
 - **示範重點：** 示範如何使用自訂 Agent 進行安全性審查並產生修復計畫
 - **目的：** 展現如何使用自訂 Agent 進行安全性審查，並根據審查結果產生具體的修復計畫
 - **操作方式：**
-  1. 保留在 `cart-page-plan` 分支
-  2. 開啟 Copilot Chat，切換至 `Agent` 模式，選擇 `SE: Security` Agent
-  3. 請 Copilot `#codebase 分析並檢查是否存在明顯的安全性弱點`
-  4. 完成後會出現 `Begin drafting plan to Fix Security Issues` 的 handoff，點選後會看到 Copilot 根據審查結果產生的修復計畫，包含優先級分類和具體的程式碼修改建議
+  1. 開啟 Copilot Chat，切換至 `Agent` 模式，選擇 `SE: Security` Agent
+  2. 請 Copilot `#codebase 分析並檢查是否存在明顯的安全性弱點`
+  3. 完成後會出現 `Begin drafting plan to Fix Security Issues` 的 handoff，點選後會看到 Copilot 根據審查結果產生的修復計畫，包含優先級分類和具體的程式碼修改建議
 
 ---
 
