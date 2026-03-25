@@ -51,7 +51,7 @@
       3. 包含生成實際的測試資料 JSON/YAML 檔案並能執行終端命令來驗證
       4. 存放於 agents
       ```
-  3. 輸入 prompt，測試 agent 是否能根據需求產出測試資料
+  3. 選擇剛剛建立的 agent，輸入 prompt，測試 agent 是否能根據需求產出測試資料
       ```
       生成 product 測試資料
       ```
@@ -65,7 +65,7 @@
 - **操作方式：**
   1. 開啟 Copilot Chat，切換至 `Agent` 模式，輸入以下提示詞
     ```
-    /create-agent 建立一個提供開發者做功能開發前的規畫 agent，此 agent 完成規劃後會v hand-off 給使用者一個實作計畫的草稿，讓使用者可以將此草稿進行修改後交給實作 agent 進行開發
+    /create-agent 建立一個提供開發者做功能開發前的規畫 agent，此 agent 完成規劃後會 hand-off 給使用者一個實作計畫的草稿，讓使用者可以將此草稿進行修改後交給實作 agent 進行開發
     ```
   2. 調整 handoffs 內文
     ```
@@ -74,7 +74,7 @@
         agent: agent
         prompt: '#createFile the plan as is into an untitled file (`untitled:plan-${camelCaseName}.prompt.md` without frontmatter) for further refinement.'
     ```
-  3. 輸入 prompt，測試 agent 是否能根據需求產出實作計畫草稿
+  3. 選擇剛剛建立的 agent，輸入 prompt，測試 agent 是否能根據需求產出實作計畫草稿
     ```
     我需要購物車頁面，依附圖的設計元素顯示目前購物車內的商品，並支援深色/淺色模式。
 
