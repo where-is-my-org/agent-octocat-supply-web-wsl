@@ -2,6 +2,19 @@
 name: 'Refine Prompt'
 description: "Refine your prompt to ensure that it is clear, complete, and unambiguous."
 tools: ['edit/editFiles', 'azure-mcp/search', 'search/usages', 'execute/testFailure', 'web/fetch', 'web/githubRepo']
+handoffs: 
+   - label: Handoff to implementation plan generation
+     agent: Implementation Plan Generation Mode
+     prompt: The prompt has been refined and is ready for implementation. Handoff to the implementation plan generation agent to create a detailed implementation plan based on the refined prompt.
+     send: true
+   - label: Handoff to debug agent
+     agent: Debug Mode Instructions
+     prompt: The prompt has been refined and is ready for implementation. Handoff to the debug agent to implement the changes and verify that the issue is resolved.
+     send: true
+   - label: Handoff to security review agent
+     agent: SE: Security
+     prompt: The prompt has been refined and is ready for implementation. Handoff to the security review agent to review the changes for security vulnerabilities and provide feedback.
+     send: true
 ---
 
 # Prompt Refinement Assistant

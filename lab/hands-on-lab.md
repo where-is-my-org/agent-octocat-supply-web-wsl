@@ -1,22 +1,8 @@
 # 🚀 GitHub Copilot Hands-on Lab
 ## 🛠️ 開發工具中的 GitHub Copilot Workshop
-- 模型選擇建議: **Claude Sonnet 4.5**
+### 模型選擇建議: **Claude Sonnet 4.5**
 
 ### ✨ 透過 Custom Agent 套用於不同操作情境
-#### **提示詞優化** : 利用 Refine Prompt agent 進行提示詞優化
-- **示範重點：** 使用專屬 agent 來改進提示，並提供清晰度評分
-- **目的：** 幫助使用者釐清提示是取得好結果的關鍵，而多數開發者不知道如何改善提示此自訂聊天模式可協助提升提示品質
-- **操作方式：**
-    1. 在 Chat 模式選擇 **RefinePrompt**
-    2. 輸入模糊的提示：`我需要購物車頁面` 輸出應包含追問與低清晰度分數
-    3. 將 [cart image](../docs/design/cart.png) 附加到 Chat
-    4. 輸入較完整的提示
-       ```
-       我需要購物車頁面，依附圖的設計元素顯示目前購物車內的商品，並支援深色/淺色模式。
-       顯示 25 美元的運費，但當訂單金額超過 150 美元時提供免運費。
-       在導覽列新增購物車圖示，能即時顯示購物車內的商品數量並於新增或移除商品時更新，點擊圖示時導向購物車頁面。
-       ```
-    6. 你應可看到更佳的提示與較高的清晰度評分
 
 #### **程式碼修復** : 修復程式碼功能面向錯誤
 - **示範重點：** 利用 Copilot 的 custom agent 協助修復程式碼
@@ -31,7 +17,39 @@
 - **操作方式：**
   1. 開啟 Copilot Chat，切換至 `Agent` 模式，選擇 `SE: Security` Agent
   2. 請 Copilot `#codebase 分析並檢查是否存在明顯的安全性弱點`
-  3. 完成後會出現 `Begin drafting plan to Fix Security Issues` 的 handoff，點選後會看到 Copilot 根據審查結果產生的修復計畫，包含優先級分類和具體的程式碼修改建議
+  3. 完成後會出現 `Begin drafting plan to Fix Security Issues` 的 handoff，點選後會看到 Copilot 根據審查結果產生的修復計畫，包含優先級分類和具體的程式
+
+---  
+
+### 🔄 使用 Handoff 機制串連不同的 Agent 來完成複雜任務
+- **示範重點：** 使用專屬 agent 來改進提示，並提供清晰度評分，同時了解 handoff 機制如何串連不同的 custom agent
+- **目的：** 幫助使用者釐清提示是取得好結果的關鍵，而多數開發者不知道如何改善提示此自訂聊天模式可協助提升提示品質
+- **操作方式：**
+    1. 在 Chat 模式選擇 **RefinePrompt**
+    2. 輸入模糊的提示：`我需要購物車頁面` 輸出應包含追問與低清晰度分數
+    3. 將 [cart image](../docs/design/cart.png) 附加到 Chat
+    4. 輸入較完整的提示
+       ```
+       我需要購物車頁面，依附圖的設計元素顯示目前購物車內的商品，並支援深色/淺色模式。
+       顯示 25 美元的運費，但當訂單金額超過 150 美元時提供免運費。
+       在導覽列新增購物車圖示，能即時顯示購物車內的商品數量並於新增或移除商品時更新，點擊圖示時導向購物車頁面。
+       ```
+    6. 你應可看到更佳的提示與較高的清晰度評分
+    7. 執行完成後，點選下方 ` Handoff to implementation plan generation` 的按鈕，確認產出的實作計畫草稿內容是否符合預期
+---
+
+### 🔁 使用 Recursive Agent 處理大型任務
+- **示範重點：** 示範如何使用 Recursive Agent 來處理需要分解的複雜任務
+- **目的：** 讓使用者了解 Subagent 的運作方式
+- **操作方式：**
+1. 開啟 Copilot Chat，切換 `RecursiveProcessor` Agent
+2. 輸入以下提示詞，讓 Agent 處理一個需要分解的任務
+   ```
+    對不同的 Node.js 應用程式 OAuth 2.0 實作模式進行獨立研究。
+    將每一種模式與目前的實作方式進行比較，並提出建議方案，同時列出各方案的優點與缺點
+   ```
+3. 觀察 Agent 如何將任務分解成子任務，並逐步完成整個任務的處理
+    ![alt text](recursive-agent.png)
 
 ---
 
@@ -64,23 +82,23 @@
 - **目的：** 讓使用者了解 Custom Agent 的基本架構與實作
 - **操作方式：**
   1. 開啟 Copilot Chat，切換至 `Agent` 模式，輸入以下提示詞
-    ```
-    /create-agent 建立一個提供開發者做功能開發前的規畫 agent，此 agent 完成規劃後會 hand-off 給使用者一個實作計畫的草稿，讓使用者可以將此草稿進行修改後交給實作 agent 進行開發
-    ```
+      ```
+      /create-agent 建立一個提供開發者做功能開發前的規畫 agent，此 agent 完成規劃後會 hand-off 給使用者一個實作計畫的草稿，讓使用者可以將此草稿進行修改後交給實作 agent 進行開發
+      ```
   2. 調整 handoffs 內文
-    ```
-      handoffs:
-      - label: Draft Implementation Plan
-        agent: agent
-        prompt: '#createFile the plan as is into an untitled file (`untitled:plan-${camelCaseName}.prompt.md` without frontmatter) for further refinement.'
-    ```
+      ```
+        handoffs:
+        - label: Draft Implementation Plan
+          agent: agent
+          prompt: '#createFile the plan as is into an untitled file (`untitled:plan-${camelCaseName}.prompt.md` without frontmatter) for further refinement.'
+      ```
   3. 選擇剛剛建立的 agent，輸入 prompt，測試 agent 是否能根據需求產出實作計畫草稿
-    ```
-    我需要購物車頁面，依附圖的設計元素顯示目前購物車內的商品，並支援深色/淺色模式。
+      ```
+      我需要購物車頁面，依附圖的設計元素顯示目前購物車內的商品，並支援深色/淺色模式。
 
-    顯示 25 美元的運費，但當訂單金額超過 150 美元時提供免運費。
-    在導覽列新增購物車圖示，能即時顯示購物車內的商品數量並於新增或移除商品時更新，點擊圖示時導向購物車頁面。
-    ```
+      顯示 25 美元的運費，但當訂單金額超過 150 美元時提供免運費。
+      在導覽列新增購物車圖示，能即時顯示購物車內的商品數量並於新增或移除商品時更新，點擊圖示時導向購物車頁面。
+      ```
   4. 點選 `Draft Implementation Plan` 的 handoff，確認產出的實作計畫草稿內容是否符合預期
   ![alt text](draft-implementation-plan.png)
 
@@ -95,3 +113,4 @@
      ```
       /pptx 分析 #codebase ，生成 ppt 說明目前專案的主要功能及採用技術
      ```
+  2. 查看 Copilot 生成的 ppt 報告，確認內容是否符合預期
